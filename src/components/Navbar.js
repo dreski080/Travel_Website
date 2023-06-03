@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './NavbarStyles.css';
 import { MenuItems } from './MenuItems';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
 	const [clicked, setClicked] = useState(false);
@@ -16,11 +17,11 @@ function Navbar() {
 			<ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
 				{MenuItems.map((item, index) => {
 					return (
-						<li key={index}>
-							<a className={item.cName} href="/">
+						<li key={index} onClick={() => setClicked(!clicked)}>
+							<Link className={item.cName} to={item.url}>
 								<i className={item.icon}></i>
 								{item.title}
-							</a>
+							</Link>
 						</li>
 					);
 				})}
